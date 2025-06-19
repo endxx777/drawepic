@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gacha Item Seru</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding-top: 100px;
+    }
+    #item-img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      margin-top: 20px;
+      transition: transform 0.3s ease;
+    }
+    #result {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+    button {
+      font-size: 22px;
+      padding: 12px 24px;
+      border: none;
+      background-color: #00c853;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00b140;
+    }
+    .spin {
+      animation: spin 0.4s linear;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎁 Gacha Item</h1>
+  <button onclick="drawItem()">Draw Sekarang!</button>
+
+  <div id="display-area">
+    <img id="item-img" src="https://raw.githubusercontent.com/github/explore/main/topics/question/question.png" alt="item" />
+    <div id="result">Klik tombol untuk draw item</div>
+  </div>
+
+  <script>
+    const items = [
+      {
+        name: "🔥 Pedang Api",
+        image: "https://raw.githubusercontent.com/ArjunAranetaCodes/gacha-images/main/fire-sword.png"
+      },
+      {
+        name: "🛡️ Perisai Legendaris",
+        image: "https://raw.githubusercontent.com/ArjunAranetaCodes/gacha-images/main/legend-shield.png"
+      },
+      {
+        name: "💎 Berlian",
+        image: "https://raw.githubusercontent.com/ArjunAranetaCodes/gacha-images/main/diamond.png"
+      },
+      {
+        name: "🐉 Telur Naga",
+        image: "https://raw.githubusercontent.com/ArjunAranetaCodes/gacha-images/main/dragon-egg.png"
+      },
+      {
+        name: "❌ Zonk",
+        image: "https://raw.githubusercontent.com/github/explore/main/topics/question/question.png"
+      }
+    ];
+
+    function drawItem() {
+      const img = document.getElementById("item-img");
+      const result = document.getElementById("result");
+
+      img.classList.add("spin");
+      result.innerText = "Mengundi item...";
+
+      setTimeout(() => {
+        const random = Math.floor(Math.random() * items.length);
+        const selected = items[random];
+
+        img.src = selected.image;
+        result.innerText = `Kamu mendapatkan: ${selected.name}`;
+        img.classList.remove("spin");
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>
